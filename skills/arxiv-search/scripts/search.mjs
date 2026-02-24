@@ -77,6 +77,7 @@ function parseAtomXml(xml) {
 }
 
 async function searchArxiv(query, maxResults = 10, sortBy = 'relevance', categories = null) {
+  maxResults = Math.min(Math.max(1, maxResults), 100);
   const cats = categories || DEFAULT_CATEGORIES;
   try {
     const url = buildQuery(query, cats, sortBy, maxResults);

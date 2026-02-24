@@ -21,8 +21,12 @@ def main():
     except (json.JSONDecodeError, EOFError):
         sys.exit(0)
 
-    agent_name = hook_input.get("agent_name", "")
-    agent_output = hook_input.get("tool_output", "") or hook_input.get("output", "")
+    # Prevent infinite retry loops when hook is already active
+    if hook_input.get("stop_hook_active", False):
+        sys.exit(0)
+
+    agent_name = hook_input.get("agent_type", "")
+    agent_output = hook_input.get("last_assistant_message", "")
 
     if agent_name not in REQUIRED_SECTIONS:
         sys.exit(0)

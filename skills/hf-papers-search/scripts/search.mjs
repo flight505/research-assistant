@@ -12,6 +12,7 @@
 const HF_API = 'https://huggingface.co/api';
 
 async function searchPapers(query, maxResults = 10) {
+  maxResults = Math.min(Math.max(1, maxResults), 100);
   try {
     const params = new URLSearchParams({ q: query, limit: String(maxResults) });
     const response = await fetch(`${HF_API}/papers/search?${params}`);
@@ -80,6 +81,7 @@ async function searchPapers(query, maxResults = 10) {
 }
 
 async function getTrending(maxResults = 10) {
+  maxResults = Math.min(Math.max(1, maxResults), 100);
   try {
     const response = await fetch(`${HF_API}/daily_papers?limit=${maxResults}`);
 

@@ -16,7 +16,7 @@ def main():
     except (json.JSONDecodeError, EOFError):
         sys.exit(1)
 
-    tool_output = hook_input.get("tool_output", "")
+    tool_output = hook_input.get("tool_result", "")
     if not tool_output:
         sys.exit(1)
 
