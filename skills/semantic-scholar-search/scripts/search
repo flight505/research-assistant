@@ -1,0 +1,7 @@
+#!/bin/bash
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+case "$1" in
+    --path|--location|--where) echo "${SCRIPT_DIR}/search"; exit 0 ;;
+    --script-dir) echo "$SCRIPT_DIR"; exit 0 ;;
+esac
+node "${SCRIPT_DIR}/search.mjs" "$@"

@@ -1,0 +1,33 @@
+{
+  "name": "research-assistant",
+  "version": "1.0.0",
+  "description": "Deep research intelligence for Claude and agents — access, understand, and apply SOTA scientific research from arXiv, Semantic Scholar, and Hugging Face Papers",
+  "author": {
+    "name": "Jesper Vang",
+    "url": "https://github.com/flight505"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/flight505/research-assistant",
+  "homepage": "https://github.com/flight505/research-assistant",
+  "keywords": [
+    "research",
+    "arxiv",
+    "semantic-scholar",
+    "huggingface-papers",
+    "literature-review",
+    "ai-research",
+    "foundation-models",
+    "machine-learning"
+  ],
+  "skills": [
+    "./skills/using-research-assistant",
+    "./skills/arxiv-search",
+    "./skills/semantic-scholar-search",
+    "./skills/hf-papers-search"
+  ],
+  "agents": [
+    "./agents/literature-reviewer.md",
+    "./agents/method-analyst.md",
+    "./agents/implementation-guide.md"
+  ]
+}
