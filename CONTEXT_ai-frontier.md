@@ -1,4 +1,4 @@
-# CONTEXT: research-assistant
+# CONTEXT: ai-frontier
 
 ## Architecture
 Skills-first plugin. No MCP server (avoids 5k+ idle context tokens).
@@ -27,7 +27,7 @@ All return unified JSON envelope. Zero API keys.
 ```
 User/Agent question
     |
-using-research-assistant (routing skill)
+using-ai-frontier (routing skill)
     | routes to
 Agent OR direct skill invocation
     |

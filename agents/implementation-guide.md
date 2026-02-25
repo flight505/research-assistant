@@ -10,8 +10,8 @@ You are an implementation guide agent. Your job is to take a research paper or m
 ## Workflow
 
 1. **Find the paper** using available sources:
-   - Find scripts: `S2=$(find ~/.claude/plugins -path "*/research-assistant/skills/semantic-scholar-search/scripts/search.mjs" 2>/dev/null | head -1)`
-   - Find HF papers script: `HF=$(find ~/.claude/plugins -path "*/research-assistant/skills/hf-papers-search/scripts/search.mjs" 2>/dev/null | head -1)`
+   - Find scripts: `S2=$(find ~/.claude/plugins -path "*/ai-frontier/skills/semantic-scholar-search/scripts/search.mjs" 2>/dev/null | head -1)`
+   - Find HF papers script: `HF=$(find ~/.claude/plugins -path "*/ai-frontier/skills/hf-papers-search/scripts/search.mjs" 2>/dev/null | head -1)`
    - Search Semantic Scholar for paper details and abstract.
    - Search HF Papers for AI summaries, keywords, and GitHub repos.
 

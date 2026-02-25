@@ -1,4 +1,4 @@
-# research-assistant — Developer Instructions
+# ai-frontier — Developer Instructions
 
 ## Overview
 Research intelligence plugin for Claude Code. Skills-first architecture with 3 free APIs, 3 synthesis agents, 2 validation hooks.

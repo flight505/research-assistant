@@ -1,10 +1,10 @@
 ---
-name: using-research-assistant
-description: Research assistant plugin — gives Claude and agents access to latest scientific research across arXiv, Semantic Scholar, and Hugging Face Papers. Use when needing SOTA methods, research consensus, or implementation guidance from academic literature.
+name: using-ai-frontier
+description: AI frontier plugin — gives Claude and agents access to latest scientific research across arXiv, Semantic Scholar, and Hugging Face Papers. Use when needing SOTA methods, research consensus, or implementation guidance from academic literature.
 keywords: [research, papers, SOTA, literature-review, methods, AI, machine-learning, foundation-models]
 ---
 
-# Research Assistant
+# AI Frontier
 
 You have access to deep research intelligence via three data sources and three synthesis agents. No API keys required.
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PostToolUse hook: validates research-assistant JSON output from Bash calls.
+PostToolUse hook: validates ai-frontier research JSON output from Bash calls.
 Exit 0 = valid research output
 Exit 1 = not research output (ignored by hook system)
 Exit 2 = malformed research output (blocks, Claude sees error)

@@ -1,4 +1,4 @@
-# Research Assistant
+# AI Frontier
 
 > Deep research intelligence for Claude Code — access, understand, and apply SOTA scientific research.
 
@@ -15,7 +15,7 @@ A Claude Code plugin that gives Claude and agents structured access to the scien
 
 ```bash
 claude plugin marketplace add flight505/flight505-marketplace
-claude plugin install research-assistant
+claude plugin install ai-frontier
 ```
 
 ## Skills

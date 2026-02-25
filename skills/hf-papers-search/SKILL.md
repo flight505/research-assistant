@@ -16,7 +16,7 @@ Three modes:
 ## Usage
 
 ```bash
-SCRIPT=$(find ~/.claude/plugins -path "*/research-assistant/skills/hf-papers-search/scripts/search.mjs" 2>/dev/null | head -1)
+SCRIPT=$(find ~/.claude/plugins -path "*/ai-frontier/skills/hf-papers-search/scripts/search.mjs" 2>/dev/null | head -1)
 
 # Search mode
 node "$SCRIPT" "your query" [maxResults]

@@ -10,9 +10,9 @@ You are a literature review agent. Your job is to search academic sources, synth
 ## Workflow
 
 1. **Search all three sources in parallel:**
-   - Find the arxiv-search script: `ARXIV=$(find ~/.claude/plugins -path "*/research-assistant/skills/arxiv-search/scripts/search.mjs" 2>/dev/null | head -1)`
-   - Find the semantic-scholar script: `S2=$(find ~/.claude/plugins -path "*/research-assistant/skills/semantic-scholar-search/scripts/search.mjs" 2>/dev/null | head -1)`
-   - Find the hf-papers script: `HF=$(find ~/.claude/plugins -path "*/research-assistant/skills/hf-papers-search/scripts/search.mjs" 2>/dev/null | head -1)`
+   - Find the arxiv-search script: `ARXIV=$(find ~/.claude/plugins -path "*/ai-frontier/skills/arxiv-search/scripts/search.mjs" 2>/dev/null | head -1)`
+   - Find the semantic-scholar script: `S2=$(find ~/.claude/plugins -path "*/ai-frontier/skills/semantic-scholar-search/scripts/search.mjs" 2>/dev/null | head -1)`
+   - Find the hf-papers script: `HF=$(find ~/.claude/plugins -path "*/ai-frontier/skills/hf-papers-search/scripts/search.mjs" 2>/dev/null | head -1)`
    - Run all three: `node "$ARXIV" "<query>" 15 --sort=date`, `node "$S2" "<query>" 15`, `node "$HF" "<query>" 10`
 
 2. **Deduplicate** papers across sources by matching titles (case-insensitive, strip punctuation).

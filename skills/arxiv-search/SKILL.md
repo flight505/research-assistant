@@ -15,7 +15,7 @@ No API key required. Uses arXiv public API directly.
 Find the script path, then execute:
 
 ```bash
-SCRIPT=$(find ~/.claude/plugins -path "*/research-assistant/skills/arxiv-search/scripts/search.mjs" 2>/dev/null | head -1)
+SCRIPT=$(find ~/.claude/plugins -path "*/ai-frontier/skills/arxiv-search/scripts/search.mjs" 2>/dev/null | head -1)
 node "$SCRIPT" "your query" [maxResults] [--sort=date|relevance] [--cats=cs.AI,cs.LG]
 ```
 

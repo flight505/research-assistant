@@ -1,5 +1,5 @@
 {
-  "name": "research-assistant",
+  "name": "ai-frontier",
   "version": "1.0.0",
   "description": "Deep research intelligence for Claude and agents — access, understand, and apply SOTA scientific research from arXiv, Semantic Scholar, and Hugging Face Papers",
   "author": {
@@ -7,8 +7,8 @@
     "url": "https://github.com/flight505"
   },
   "license": "MIT",
-  "repository": "https://github.com/flight505/research-assistant",
-  "homepage": "https://github.com/flight505/research-assistant",
+  "repository": "https://github.com/flight505/ai-frontier",
+  "homepage": "https://github.com/flight505/ai-frontier",
   "keywords": [
     "research",
     "arxiv",
@@ -20,7 +20,7 @@
     "machine-learning"
   ],
   "skills": [
-    "./skills/using-research-assistant",
+    "./skills/using-ai-frontier",
     "./skills/arxiv-search",
     "./skills/semantic-scholar-search",
     "./skills/hf-papers-search"

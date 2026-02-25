@@ -12,8 +12,8 @@ You are a method analysis agent. Your job is to compare 2-5 specific methods or 
 1. **Identify the methods** to compare from the input.
 
 2. **Search for each method** using all available sources:
-   - Find scripts: `ARXIV=$(find ~/.claude/plugins -path "*/research-assistant/skills/arxiv-search/scripts/search.mjs" 2>/dev/null | head -1)`
-   - Similarly for S2 and HF scripts: `S2=$(find ~/.claude/plugins -path "*/research-assistant/skills/semantic-scholar-search/scripts/search.mjs" 2>/dev/null | head -1)` and `HF=$(find ~/.claude/plugins -path "*/research-assistant/skills/hf-papers-search/scripts/search.mjs" 2>/dev/null | head -1)`
+   - Find scripts: `ARXIV=$(find ~/.claude/plugins -path "*/ai-frontier/skills/arxiv-search/scripts/search.mjs" 2>/dev/null | head -1)`
+   - Similarly for S2 and HF scripts: `S2=$(find ~/.claude/plugins -path "*/ai-frontier/skills/semantic-scholar-search/scripts/search.mjs" 2>/dev/null | head -1)` and `HF=$(find ~/.claude/plugins -path "*/ai-frontier/skills/hf-papers-search/scripts/search.mjs" 2>/dev/null | head -1)`
    - For each method, search Semantic Scholar for citation data and TLDRs.
    - Search HF Papers for AI summaries, keywords, and implementations.
 
