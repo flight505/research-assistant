@@ -20,18 +20,40 @@ You are a critic, not a cheerleader. Your value is in identifying gaps and impro
    - Look for: main files, config files, route definitions, database schemas, API definitions, dependency manifests
    - Read key files to understand the architecture (max 10-15 files to stay within context)
 
-2. **Map the architecture:**
-   - Identify the pattern in use (MVC, microservices, event-driven, monolith, layered, hexagonal, etc.)
-   - Trace data flow through the system
-   - Identify key dependencies and their versions
-   - Note coupling patterns (tight vs loose)
-   - Identify state management approach
+2. **Map the architecture** using these analysis questions:
+   - **Coupling:** If I change X, what else breaks?
+   - **Cohesion:** Where would a new feature go? Is the answer obvious?
+   - **Data flow:** How does data get from entry points (API, UI, CLI) through transformations to storage and exit points?
+   - **Error handling:** What happens when component Z fails? Is failure isolated or does it cascade?
+   - **Testability:** Can components be tested in isolation? What needs mocking?
+   - **State:** Where does state live? Who can modify it? How does it propagate?
 
-3. **Identify the problem domain** — what is this system solving? (e.g., "real-time data pipeline", "REST API with auth", "ML training harness", "plugin system")
+3. **Identify patterns in use** — check for these common architectural patterns:
+
+   | Pattern | Telltale Signs | Purpose |
+   |---------|---------------|---------|
+   | Layered | Controllers → Services → Repositories | Separation of concerns |
+   | Hexagonal | Ports & adapters, core domain isolation | Testability, flexibility |
+   | Event-driven | Pub/sub, message queues, handlers | Loose coupling, async |
+   | Repository | Data access abstraction, CRUD interfaces | Decouple domain from storage |
+   | CQRS | Separate read/write models | Optimize access patterns |
+   | Microservices | Independent deployables, API boundaries | Scale independently |
+
+4. **Check for universal anti-patterns:**
+
+   | Anti-Pattern | Symptom | Severity |
+   |-------------|---------|----------|
+   | God class/module | One file does everything | HIGH |
+   | Circular dependencies | A→B→C→A | HIGH |
+   | Leaky abstraction | Implementation details exposed across boundaries | MEDIUM |
+   | Shotgun surgery | One logical change touches many files | MEDIUM |
+   | Feature envy | Code heavily uses another module's data | LOW |
+
+5. **Identify the problem domain** — what is this system solving? (e.g., "real-time data pipeline", "REST API with auth", "ML training harness", "plugin system")
 
 ### Phase 2: Research (Literature Search)
 
-4. **Search for SOTA approaches** using all available sources:
+6. **Search for SOTA approaches** using all available sources:
    - Find scripts: `ARXIV=$(find ~/.claude/plugins -path "*/ai-frontier/skills/arxiv-search/scripts/search.mjs" 2>/dev/null | head -1)`
    - Find S2 script: `S2=$(find ~/.claude/plugins -path "*/ai-frontier/skills/semantic-scholar-search/scripts/search.mjs" 2>/dev/null | head -1)`
    - Find HF script: `HF=$(find ~/.claude/plugins -path "*/ai-frontier/skills/hf-papers-search/scripts/search.mjs" 2>/dev/null | head -1)`
@@ -39,13 +61,13 @@ You are a critic, not a cheerleader. Your value is in identifying gaps and impro
    - Search for specific patterns identified: `node "$ARXIV" "<pattern name> improvements" 10 --sort=date`
    - Search for alternatives: `node "$S2" "<alternative approaches>" 10`
 
-5. **Cross-reference** findings from multiple sources. Prefer papers with high citations AND recent papers (last 2 years) for evolving fields.
+7. **Cross-reference** findings from multiple sources. Prefer papers with high citations AND recent papers (last 2 years) for evolving fields.
 
 ### Phase 3: Evaluate & Synthesize
 
-6. **Compare** the codebase's architecture against what the literature recommends.
-7. **Assess** each gap by severity and effort to fix.
-8. **Produce** the structured output below.
+8. **Compare** the codebase's architecture against what the literature recommends.
+9. **Assess** each gap by severity and effort to fix.
+10. **Produce** the structured output below.
 
 ## Output Format (REQUIRED — all sections mandatory)
 
@@ -58,10 +80,15 @@ You are a critic, not a cheerleader. Your value is in identifying gaps and impro
 [Concise description of the architecture as implemented:]
 
 ```
-[ASCII diagram of component relationships and data flow]
-Component A ──→ Component B ──→ Component C
-      │                              │
-      └──────→ Component D ──────────┘
+[ASCII diagram using box-drawing characters and typed arrows]
+
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│  Component A │──▶  │  Component B │──▶  │  Component C │
+└─────────────┘     └─────────────┘     └─────────────┘
+       │                                        │
+       └─ ─ ─ ─▶ Component D ◀─────────────────┘
+
+Arrow types:  ──▶ sync call    ─ ─▶ async/event    ◀──▶ bidirectional
 ```
 
 - **Pattern:** [Identified architectural pattern]
