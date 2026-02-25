@@ -12,6 +12,7 @@ REQUIRED_SECTIONS = {
     "literature-reviewer": ["CONSENSUS", "FRONTIER", "KEY PAPERS"],
     "method-analyst": ["COMPARISON MATRIX", "RECOMMENDATION"],
     "implementation-guide": ["CORE ALGORITHM", "REFERENCE IMPLEMENTATIONS"],
+    "architecture-evaluator": ["CURRENT ARCHITECTURE", "GAP ANALYSIS", "RECOMMENDATIONS"],
 }
 
 

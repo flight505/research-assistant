@@ -28,6 +28,7 @@
   "agents": [
     "./agents/literature-reviewer.md",
     "./agents/method-analyst.md",
-    "./agents/implementation-guide.md"
+    "./agents/implementation-guide.md",
+    "./agents/architecture-evaluator.md"
   ]
 }

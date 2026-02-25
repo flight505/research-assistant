@@ -1,16 +1,21 @@
 ---
 name: using-ai-frontier
-description: AI frontier plugin — gives Claude and agents access to latest scientific research across arXiv, Semantic Scholar, and Hugging Face Papers. Use when needing SOTA methods, research consensus, or implementation guidance from academic literature.
-keywords: [research, papers, SOTA, literature-review, methods, AI, machine-learning, foundation-models]
+description: AI frontier plugin — gives Claude and agents access to latest scientific research and architecture evaluation. Use when needing SOTA methods, research consensus, implementation guidance, or evaluating whether a codebase uses optimal patterns and architectures.
+keywords: [research, papers, SOTA, literature-review, methods, AI, machine-learning, foundation-models, architecture, evaluation]
 ---
 
 # AI Frontier
 
-You have access to deep research intelligence via three data sources and three synthesis agents. No API keys required.
+You have access to deep research intelligence via three data sources and four synthesis agents. No API keys required.
 
 ## Decision Tree
 
 When you encounter these situations, use the appropriate tool:
+
+### Need to evaluate architecture against SOTA
+**Agent:** `architecture-evaluator`
+**Triggers:** "Is this the right architecture?", "Evaluate my approach", "Are there better patterns for X?", "Review this against SOTA", "Is my architecture optimal?", "What patterns should I use for X?"
+**Returns:** SCOPE, CURRENT ARCHITECTURE (with ASCII diagram), SOTA ALTERNATIVES, GAP ANALYSIS, RECOMMENDATIONS, REFERENCES
 
 ### Need to understand what the field knows
 **Agent:** `literature-reviewer`

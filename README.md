@@ -7,7 +7,7 @@ A Claude Code plugin that gives Claude and agents structured access to the scien
 ## Features
 
 - **3 Data Sources** — arXiv, Semantic Scholar, Hugging Face Papers (all free, no API keys)
-- **3 Synthesis Agents** — literature review, method comparison, implementation guidance
+- **4 Synthesis Agents** — literature review, method comparison, implementation guidance, architecture evaluation
 - **LLM-Optimized Output** — structured sections Claude can reason over
 - **Zero Config** — no API keys, no setup, just install and use
 
@@ -30,6 +30,7 @@ claude plugin install ai-frontier
 
 | Agent | Use When |
 |-------|----------|
+| `architecture-evaluator` | "Is this architecture optimal? Evaluate against SOTA." |
 | `literature-reviewer` | "What does the field know about X?" |
 | `method-analyst` | "Should I use method X or Y?" |
 | `implementation-guide` | "How do I implement X from this paper?" |

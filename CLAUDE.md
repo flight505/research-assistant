@@ -1,11 +1,11 @@
 # ai-frontier — Developer Instructions
 
 ## Overview
-Research intelligence plugin for Claude Code. Skills-first architecture with 3 free APIs, 3 synthesis agents, 2 validation hooks.
+Research intelligence plugin for Claude Code. Skills-first architecture with 3 free APIs, 4 synthesis agents, 2 validation hooks.
 
 ## Structure
 - `skills/` — 4 skills (1 router + 3 retrieval with Node.js scripts)
-- `agents/` — 3 synthesis agents (literature-reviewer, method-analyst, implementation-guide)
+- `agents/` — 4 synthesis agents (literature-reviewer, method-analyst, implementation-guide, architecture-evaluator)
 - `hooks/` — hooks.json auto-discovered, 2 Python validators
 
 ## Key Rules

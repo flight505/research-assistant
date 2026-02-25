@@ -15,6 +15,7 @@ All return unified JSON envelope. Zero API keys.
 ### Synthesis Layer
 | Agent | Trigger | Output |
 |-------|---------|--------|
+| architecture-evaluator | "Is this optimal?" | CURRENT ARCHITECTURE, GAP ANALYSIS, RECOMMENDATIONS |
 | literature-reviewer | "What's the SOTA?" | CONSENSUS, FRONTIER, KEY PAPERS |
 | method-analyst | "Which method?" | COMPARISON MATRIX, RECOMMENDATION |
 | implementation-guide | "How to implement?" | CORE ALGORITHM, REFERENCE IMPLEMENTATIONS |

@@ -14,7 +14,7 @@
     ],
     "SubagentStop": [
       {
-        "matcher": "literature-reviewer|method-analyst|implementation-guide",
+        "matcher": "literature-reviewer|method-analyst|implementation-guide|architecture-evaluator",
         "hooks": [
           {
             "type": "command",
