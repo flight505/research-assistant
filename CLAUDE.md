@@ -22,7 +22,7 @@ node skills/semantic-scholar-search/scripts/search.mjs "test query" 3
 node skills/hf-papers-search/scripts/search.mjs "test query" 3
 
 # Test hooks
-echo '{"tool_output": "{\"success\": true, \"source\": \"arxiv\", \"results\": []}"}' | python3 hooks/validate-research-output.py
+echo '{"tool_result": "{\"success\": true, \"source\": \"arxiv\", \"results\": []}"}' | python3 hooks/validate-research-output.py
 ```
 
 ## Versioning

@@ -9,16 +9,22 @@
 const S2_API = 'https://api.semanticscholar.org/graph/v1';
 const FIELDS = 'title,authors,year,abstract,tldr,url,openAccessPdf,citationCount,influentialCitationCount,fieldsOfStudy,venue,externalIds,publicationDate';
 
+const S2_HEADERS = {
+  'User-Agent': 'ai-frontier-plugin/1.0 (Claude Code research tool)',
+  ...(process.env.S2_API_KEY ? { 'x-api-key': process.env.S2_API_KEY } : {})
+};
+
 async function fetchWithRetry(url, options = {}, retries = 3) {
+  options.headers = { ...S2_HEADERS, ...options.headers };
   for (let i = 0; i <= retries; i++) {
     try {
       const res = await fetch(url, options);
       if (res.ok || (res.status < 500 && res.status !== 429)) return res;
-      if (i < retries) await new Promise(r => setTimeout(r, 1000 * 2 ** i));
+      if (i < retries) await new Promise(r => setTimeout(r, 2000 * 2 ** i));
       else return res;
     } catch (err) {
       if (i === retries) throw err;
-      await new Promise(r => setTimeout(r, 1000 * 2 ** i));
+      await new Promise(r => setTimeout(r, 2000 * 2 ** i));
     }
   }
 }

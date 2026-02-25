@@ -6,7 +6,7 @@
  * Returns unified JSON envelope optimized for LLM consumption.
  */
 
-const ARXIV_API = 'http://export.arxiv.org/api/query';
+const ARXIV_API = 'https://export.arxiv.org/api/query';
 const DEFAULT_CATEGORIES = ['cs.AI', 'cs.LG', 'cs.CL', 'cs.CV', 'stat.ML', 'cs.MA'];
 
 async function fetchWithRetry(url, options = {}, retries = 3) {

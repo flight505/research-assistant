@@ -71,9 +71,7 @@ async function searchPapers(query, maxResults = 10) {
           arxiv_id: arxivId,
           upvotes: paper.upvotes || 0,
           num_comments: item.numComments || 0,
-          organization: paper.organization?.fullname || '',
-          highlighted_title: item.highlightedTitle || '',
-          highlighted_summary: item.highlightedSummary || ''
+          organization: paper.organization?.fullname || ''
         }
       };
     });
