@@ -9,6 +9,20 @@
 const ARXIV_API = 'http://export.arxiv.org/api/query';
 const DEFAULT_CATEGORIES = ['cs.AI', 'cs.LG', 'cs.CL', 'cs.CV', 'stat.ML', 'cs.MA'];
 
+async function fetchWithRetry(url, options = {}, retries = 3) {
+  for (let i = 0; i <= retries; i++) {
+    try {
+      const res = await fetch(url, options);
+      if (res.ok || (res.status < 500 && res.status !== 429)) return res;
+      if (i < retries) await new Promise(r => setTimeout(r, 1000 * 2 ** i));
+      else return res;
+    } catch (err) {
+      if (i === retries) throw err;
+      await new Promise(r => setTimeout(r, 1000 * 2 ** i));
+    }
+  }
+}
+
 function buildQuery(query, categories, sortBy, maxResults) {
   const catFilter = categories.map(c => `cat:${c}`).join('+OR+');
   const searchQuery = `all:${encodeURIComponent(query)}+AND+(${catFilter})`;
@@ -81,9 +95,9 @@ async function searchArxiv(query, maxResults = 10, sortBy = 'relevance', categor
   const cats = categories || DEFAULT_CATEGORIES;
   try {
     const url = buildQuery(query, cats, sortBy, maxResults);
-    const response = await fetch(url);
+    const response = await fetchWithRetry(url);
     if (!response.ok) {
-      return { success: false, error: `arXiv API returned HTTP ${response.status}`, source: 'arxiv' };
+      return { success: false, error: `arXiv API returned HTTP ${response.status} after retries`, source: 'arxiv' };
     }
     const xml = await response.text();
     const results = parseAtomXml(xml);

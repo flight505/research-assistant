@@ -9,6 +9,20 @@
 const S2_API = 'https://api.semanticscholar.org/graph/v1';
 const FIELDS = 'title,authors,year,abstract,tldr,url,openAccessPdf,citationCount,influentialCitationCount,fieldsOfStudy,venue,externalIds,publicationDate';
 
+async function fetchWithRetry(url, options = {}, retries = 3) {
+  for (let i = 0; i <= retries; i++) {
+    try {
+      const res = await fetch(url, options);
+      if (res.ok || (res.status < 500 && res.status !== 429)) return res;
+      if (i < retries) await new Promise(r => setTimeout(r, 1000 * 2 ** i));
+      else return res;
+    } catch (err) {
+      if (i === retries) throw err;
+      await new Promise(r => setTimeout(r, 1000 * 2 ** i));
+    }
+  }
+}
+
 async function searchPapers(query, maxResults = 10, yearFrom = null, openAccess = false) {
   try {
     const params = new URLSearchParams({
@@ -19,13 +33,10 @@ async function searchPapers(query, maxResults = 10, yearFrom = null, openAccess 
     if (yearFrom) params.set('year', `${yearFrom}-`);
     if (openAccess) params.set('openAccessPdf', '');
 
-    const response = await fetch(`${S2_API}/paper/search?${params}`);
+    const response = await fetchWithRetry(`${S2_API}/paper/search?${params}`);
 
-    if (response.status === 429) {
-      return { success: false, error: 'Rate limited. Wait a moment and retry.', source: 'semantic_scholar' };
-    }
     if (!response.ok) {
-      return { success: false, error: `S2 API returned HTTP ${response.status}`, source: 'semantic_scholar' };
+      return { success: false, error: `S2 API returned HTTP ${response.status} after retries`, source: 'semantic_scholar' };
     }
 
     const data = await response.json();
@@ -74,7 +85,7 @@ async function searchPapers(query, maxResults = 10, yearFrom = null, openAccess 
 async function getPaperDetails(paperId) {
   try {
     const detailFields = FIELDS + ',references,citations';
-    const response = await fetch(`${S2_API}/paper/${encodeURIComponent(paperId)}?fields=${detailFields}`);
+    const response = await fetchWithRetry(`${S2_API}/paper/${encodeURIComponent(paperId)}?fields=${detailFields}`);
     if (!response.ok) {
       return { success: false, error: `S2 API returned HTTP ${response.status}`, source: 'semantic_scholar' };
     }

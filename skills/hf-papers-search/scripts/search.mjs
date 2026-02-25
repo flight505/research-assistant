@@ -11,11 +11,25 @@
 
 const HF_API = 'https://huggingface.co/api';
 
+async function fetchWithRetry(url, options = {}, retries = 3) {
+  for (let i = 0; i <= retries; i++) {
+    try {
+      const res = await fetch(url, options);
+      if (res.ok || (res.status < 500 && res.status !== 429)) return res;
+      if (i < retries) await new Promise(r => setTimeout(r, 1000 * 2 ** i));
+      else return res;
+    } catch (err) {
+      if (i === retries) throw err;
+      await new Promise(r => setTimeout(r, 1000 * 2 ** i));
+    }
+  }
+}
+
 async function searchPapers(query, maxResults = 10) {
   maxResults = Math.min(Math.max(1, maxResults), 100);
   try {
     const params = new URLSearchParams({ q: query, limit: String(maxResults) });
-    const response = await fetch(`${HF_API}/papers/search?${params}`);
+    const response = await fetchWithRetry(`${HF_API}/papers/search?${params}`);
 
     if (!response.ok) {
       return { success: false, error: `HF Papers API returned HTTP ${response.status}`, source: 'hf_papers' };
@@ -83,7 +97,7 @@ async function searchPapers(query, maxResults = 10) {
 async function getTrending(maxResults = 10) {
   maxResults = Math.min(Math.max(1, maxResults), 100);
   try {
-    const response = await fetch(`${HF_API}/daily_papers?limit=${maxResults}`);
+    const response = await fetchWithRetry(`${HF_API}/daily_papers?limit=${maxResults}`);
 
     if (!response.ok) {
       return { success: false, error: `HF Daily Papers API returned HTTP ${response.status}`, source: 'hf_papers' };
@@ -150,7 +164,7 @@ async function getTrending(maxResults = 10) {
 
 async function getPaperDetail(arxivId) {
   try {
-    const response = await fetch(`${HF_API}/papers/${encodeURIComponent(arxivId)}`);
+    const response = await fetchWithRetry(`${HF_API}/papers/${encodeURIComponent(arxivId)}`);
 
     if (!response.ok) {
       return { success: false, error: `HF Papers API returned HTTP ${response.status}`, source: 'hf_papers' };
