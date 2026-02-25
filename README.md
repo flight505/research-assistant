@@ -1,6 +1,19 @@
-# AI Frontier
+<p align="center">
+  <img src="assets/AI-Frontier@0.5x.png" alt="AI Frontier - Research Intelligence for Claude Code" width="800">
+</p>
 
-> Deep research intelligence for Claude Code — access, understand, and apply SOTA scientific research.
+<p align="center">
+  <a href="https://github.com/flight505/ai-frontier"><img src="https://img.shields.io/badge/version-1.0.0-blue.svg" alt="Version"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License"></a>
+  <a href="https://github.com/anthropics/claude-code"><img src="https://img.shields.io/badge/Claude%20Code-Plugin-purple.svg" alt="Claude Code Plugin"></a>
+</p>
+
+<p align="center">
+  <strong>Deep research intelligence for Claude Code</strong><br>
+  Access, understand, and apply SOTA scientific research from arXiv, Semantic Scholar, and Hugging Face Papers
+</p>
+
+---
 
 A Claude Code plugin that gives Claude and agents structured access to the scientific research frontier. Optimized for LLM consumption: structured synthesis, not raw search results.
 
