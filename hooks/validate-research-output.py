@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """
 PostToolUse hook: validates ai-frontier research JSON output from Bash calls.
-Exit 0 = valid research output
-Exit 1 = not research output (ignored by hook system)
+Exit 0 = valid research output OR not research output (pass-through)
 Exit 2 = malformed research output (blocks, Claude sees error)
 """
 
@@ -14,14 +13,14 @@ def main():
     try:
         hook_input = json.load(sys.stdin)
     except (json.JSONDecodeError, EOFError):
-        sys.exit(1)
+        sys.exit(0)
 
     tool_output = hook_input.get("tool_result", "")
     if not tool_output:
-        sys.exit(1)
+        sys.exit(0)
 
     if '"source"' not in tool_output:
-        sys.exit(1)
+        sys.exit(0)
 
     valid_sources = ["arxiv", "semantic_scholar", "hf_papers", "perplexity"]
     is_research = False
@@ -31,7 +30,7 @@ def main():
             break
 
     if not is_research:
-        sys.exit(1)
+        sys.exit(0)
 
     try:
         data = json.loads(tool_output)
