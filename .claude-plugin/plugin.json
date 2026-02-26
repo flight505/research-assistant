@@ -1,7 +1,7 @@
 {
   "name": "ai-frontier",
-  "version": "1.0.0",
-  "description": "Deep research intelligence for Claude and agents — access, understand, and apply SOTA scientific research from arXiv, Semantic Scholar, and Hugging Face Papers",
+  "version": "1.1.0",
+  "description": "Deep research intelligence for Claude and agents — access, understand, and apply SOTA scientific research from arXiv, Semantic Scholar, Hugging Face Papers, and Perplexity",
   "author": {
     "name": "Jesper Vang",
     "url": "https://github.com/flight505"

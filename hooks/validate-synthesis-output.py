@@ -10,9 +10,9 @@ import sys
 
 REQUIRED_SECTIONS = {
     "literature-reviewer": ["DATA SOURCES", "CONSENSUS", "FRONTIER", "KEY PAPERS"],
-    "method-analyst": ["COMPARISON MATRIX", "RECOMMENDATION"],
-    "implementation-guide": ["CORE ALGORITHM", "REFERENCE IMPLEMENTATIONS"],
-    "architecture-evaluator": ["CURRENT ARCHITECTURE", "GAP ANALYSIS", "RECOMMENDATIONS"],
+    "method-analyst": ["DATA SOURCES", "COMPARISON MATRIX", "RECOMMENDATION"],
+    "implementation-guide": ["DATA SOURCES", "CORE ALGORITHM", "REFERENCE IMPLEMENTATIONS"],
+    "architecture-evaluator": ["DATA SOURCES", "CURRENT ARCHITECTURE", "GAP ANALYSIS", "RECOMMENDATIONS"],
 }
 
 
