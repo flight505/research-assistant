@@ -23,7 +23,7 @@ def main():
     if '"source"' not in tool_output:
         sys.exit(1)
 
-    valid_sources = ["arxiv", "semantic_scholar", "hf_papers"]
+    valid_sources = ["arxiv", "semantic_scholar", "hf_papers", "perplexity"]
     is_research = False
     for src in valid_sources:
         if f'"source": "{src}"' in tool_output or f'"source":"{src}"' in tool_output:

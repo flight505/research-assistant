@@ -1,12 +1,21 @@
 ---
 name: using-ai-frontier
-description: AI frontier plugin — gives Claude and agents access to latest scientific research and architecture evaluation. Use when needing SOTA methods, research consensus, implementation guidance, or evaluating whether a codebase uses optimal patterns and architectures.
-keywords: [research, papers, SOTA, literature-review, methods, AI, machine-learning, foundation-models, architecture, evaluation]
+description: AI frontier plugin — gives Claude and agents access to latest scientific research, SOTA discovery, and architecture evaluation. Use when needing SOTA methods, research consensus, implementation guidance, or evaluating whether a codebase uses optimal patterns and architectures.
+keywords: [research, papers, SOTA, literature-review, methods, AI, machine-learning, foundation-models, architecture, evaluation, perplexity]
 ---
 
 # AI Frontier
 
-You have access to deep research intelligence via three data sources and four synthesis agents. No API keys required.
+You have access to deep research intelligence via four data sources and four synthesis agents.
+
+## Critical: Distinguishing Foundational from Current SOTA
+
+Citation count measures influence, **not currency**. A paper with 5000 citations from 2022 may be foundational but no longer SOTA. Always consider:
+- **Publication date** — papers < 6 months old are current; > 2 years old need SOTA validation
+- **Supersession** — has a newer method replaced this? (e.g., ReAct 2022 → superseded by ToT, LATS, ReWOO)
+- **Adoption signal** — GitHub stars, HF upvotes, framework integrations indicate real-world use
+
+When unsure whether a method is still SOTA, use `perplexity-search --sota` to get web-grounded current status.
 
 ## Decision Tree
 
@@ -20,7 +29,7 @@ When you encounter these situations, use the appropriate tool:
 ### Need to understand what the field knows
 **Agent:** `literature-reviewer`
 **Triggers:** "What's the SOTA for X?", "Survey of approaches to X", "What does the research say about X?"
-**Returns:** CONSENSUS, FRONTIER, OPEN QUESTIONS, KEY PAPERS, METHOD TAXONOMY
+**Returns:** DATA SOURCES, CONSENSUS, FRONTIER, OPEN QUESTIONS, KEY PAPERS, METHOD TAXONOMY, APPLICABILITY
 
 ### Need to choose between approaches
 **Agent:** `method-analyst`
@@ -39,20 +48,32 @@ When you encounter these situations, use the appropriate tool:
 | Bleeding-edge preprints | `arxiv-search` | Latest papers on speculative decoding |
 | Citations + TLDRs + impact | `semantic-scholar-search` | How influential is paper X? |
 | AI summaries + trending | `hf-papers-search` | Trending papers, AI-extracted keywords |
+| **Current SOTA / what replaced X** | `perplexity-search --sota` | **What replaced ReAct for agent reasoning?** |
+| **Last N days developments** | `perplexity-search --recent` | **New RAG frameworks this month** |
+| **Web-grounded fact check** | `perplexity-search` | **Is paper X still considered SOTA?** |
 
 ## When NOT to Use
 
 - API docs, library usage, tutorials — use web search or documentation skills
 - Common engineering knowledge — not a research question
 - Debugging errors — use debugging tools
-- Recent news or announcements — use perplexity
 
-## How Skills Return Data
+## Data Sources
 
-All retrieval skills return a unified JSON envelope with:
-- `results[].title`, `authors`, `year`, `abstract`, `tldr`
-- `results[].pdf_url`, `url`, `citations`
-- `results[].code_repos` — GitHub repos with stars and framework
-- `results[].key_methods` — extracted method names
+### Free (no API key)
+- **arXiv** — preprints with categories, dates, PDF links
+- **Semantic Scholar** — citations, TLDRs, impact scores, venue info
+- **HF Papers** — AI summaries, community upvotes, code repos, trending
 
-Agents return structured markdown sections optimized for reasoning.
+### Requires OPENROUTER_API_KEY (~$0.003/query)
+- **Perplexity** — web-grounded SOTA discovery, recent developments, practitioner adoption
+
+All retrieval skills return a unified JSON envelope. Agents return structured markdown sections.
+
+## Recommended Workflow for Research Questions
+
+1. **Academic search** (arXiv + S2 + HF) → structured paper metadata
+2. **SOTA validation** (Perplexity `--sota`) → what's current, what's superseded
+3. **Synthesis** (agent) → merged analysis with both academic rigor and SOTA awareness
+
+If Perplexity is unavailable (no API key), agents still work with academic data only — results will have citation-based ranking without web-grounded SOTA validation.

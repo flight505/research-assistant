@@ -23,7 +23,8 @@
     "./skills/using-ai-frontier",
     "./skills/arxiv-search",
     "./skills/semantic-scholar-search",
-    "./skills/hf-papers-search"
+    "./skills/hf-papers-search",
+    "./skills/perplexity-search"
   ],
   "agents": [
     "./agents/literature-reviewer.md",
